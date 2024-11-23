@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Define the schema
+
 const NoteSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -27,11 +27,10 @@ const NoteSchema = new mongoose.Schema({
   },
 });
 
-// Add a pre-save middleware to update the `updated_at` field
+
 NoteSchema.pre("save", function (next) {
   this.updated_at = Date.now();
   next();
 });
 
-// Export the model
 module.exports = mongoose.model("Note", NoteSchema);
